@@ -1,32 +1,58 @@
-print("welcome to PYTHON restaurant ")
+import datetime
 
+# Menu with prices
 menu = {
-    "pizza": 40,
-    "pasta": 50,
-    "burger": 60,
-    "salad": 70,
-    "coffee": 80
+    "Burger": 120,
+    "Pizza": 250,
+    "Pasta": 180,
+    "Coffee": 80,
+    "Ice Cream": 100
 }
 
+order = {}  # store items and quantity
+
+print("------ Welcome to Python Restaurant ------")
+print("Menu:")
 for item, price in menu.items():
-    print(f"{item}: RS{price}")
+    print(f"{item}: ₹{price}")
 
-order_total = 0
-
-item_1 = input("Enter the name of the item you want to order: ").lower()
-if item_1 in menu:
-    order_total += menu[item_1]
-    print(f"Your item {item_1} has been added to your order")
-else:
-    print(f"Ordered item {item_1} is not available!")
-
-another_order = input("Do you want to order something? (yes/no): ").lower()
-if another_order == "yes":
-    item_2 = input("Enter the name of second item: ").lower()
-    if item_2 in menu:
-        order_total += menu[item_2]
-        print(f"Your item {item_2} has been added to your order")
+while True:
+    item = input("\nEnter item to order (or 'done' to finish): ").title()
+    if item == "Done":
+        break
+    elif item in menu:
+        qty = int(input(f"Enter quantity of {item}: "))
+        if item in order:
+            order[item] += qty
+        else:
+            order[item] = qty
+        print(f"{qty} x {item} added to order ✅")
     else:
-        print(f"Ordered item {item_2} is not available!")
+        print("❌ Item not available, try again.")
 
-print(f"The total amount you have to pay is {order_total}")
+# Bill Calculation
+if order:
+    print("\n------ Bill Summary ------")
+    subtotal = 0
+    for item, qty in order.items():
+        price = menu[item] * qty
+        subtotal += price
+        print(f"{item} x {qty} = ₹{price}")
+
+    tax = subtotal * 0.05         # 5% GST
+    discount = 0
+    coupon = input("\nEnter coupon code (or press Enter to skip): ").upper()
+    if coupon == "SAVE10":
+        discount = subtotal * 0.10
+
+    total = subtotal + tax - discount
+
+    print("\nSubtotal: ₹", subtotal)
+    print("GST (5%): ₹", round(tax, 2))
+    print("Discount: ₹", round(discount, 2))
+    print("Total Amount to Pay: ₹", round(total, 2))
+
+    print("\nThank you for ordering! 🎉")
+    print("Order Time:", datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
+else:
+    print("No items ordered.")
