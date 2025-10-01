@@ -1,0 +1,6 @@
+2025-10-01 22:55:09.922825 - Added student: roll=555, name=pinu
+2025-10-01 22:55:17.631043 - Viewed all students (and cleaned invalid lines)
+2025-10-01 22:55:36.501878 - Searched student: Roll=101 not found
+2025-10-01 22:56:32.228375 - Viewed all students (and cleaned invalid lines)
+2025-10-01 22:56:42.753979 - Searched student: Roll=555 not found
+2025-10-01 23:00:14.098235 - Program exited
