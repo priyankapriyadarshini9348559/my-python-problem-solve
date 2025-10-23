@@ -1,2 +1,2 @@
-heelo baby
- i love you
+hello,how are you!welcome to file handeling method in python 
+ welcome to hightech city hydrabad
